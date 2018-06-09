@@ -7,6 +7,7 @@ const symbols = ['fa fa-diamond', 'fa fa-diamond', 'fa fa-paper-plane-o',
 
  const cardContainer = document.querySelector('.deck');
  let openedCards = [];
+ let matchedCards = [];
 
  //create the cards
  for(let i=0; i<symbols.length; i++) {
@@ -16,23 +17,42 @@ const symbols = ['fa fa-diamond', 'fa fa-diamond', 'fa fa-paper-plane-o',
      cardContainer.appendChild(card);
  
  //card click events
- card.addEventListener('click', function() {
-     if(openedCards.length ===1) {
+    card.addEventListener('click', function() {
+
+     const currentCard = this;
+     const previousCard = openedCards[0];
+
+     if(openedCards.length === 1) {
+
          card.classList.add('open', 'show');
          openedCards.push(this);
 
-         if(this.innerHTML === openedCards[0].innerHTML) {
-             console.log('matches');
+         if(currentCard.innerHTML === previousCard.innerHTML) {
+             currentCard.classList.add('match');
+             previousCard.classList.add('match');
+             matchedCards.push(currentCard, previousCard);
+
+             openedCards = [];
+             isOver();
          } else {
-             console.log('doesnt match');
+          
+            setTimeout(() => {
+                currentCard.classList.remove('open', 'show');
+                previousCard.classList.remove('open', 'show');
+                openedCards = [];
+            }, 1000); 
          }
      } else {
          card.classList.add('open', 'show');
          openedCards.push(this);
      }
-     
- });
-   
+    });
+}
+
+function isOver() {
+    if(matchedCards.length === symbols.length) {
+        alert('game over');
+    }
 }
 
 /*
