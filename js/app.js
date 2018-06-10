@@ -10,51 +10,82 @@ const symbols = ['fa fa-diamond', 'fa fa-diamond', 'fa fa-paper-plane-o',
  let matchedCards = [];
 
  //create the cards
+ function initGame() {
  for(let i=0; i<symbols.length; i++) {
      const card = document.createElement('li');
      card.classList.add('card');
      card.innerHTML = `<i class = "${symbols[i]}"</i>`;
      cardContainer.appendChild(card);
- 
+ click(card);
+ }
+
  //card click events
+ function click(card) {
     card.addEventListener('click', function() {
 
      const currentCard = this;
      const previousCard = openedCards[0];
 
      if(openedCards.length === 1) {
-
-         card.classList.add('open', 'show');
+//so you cannot click twice on the same card
+         card.classList.add('open', 'show', 'disabled');
          openedCards.push(this);
-
-         if(currentCard.innerHTML === previousCard.innerHTML) {
-             currentCard.classList.add('match');
-             previousCard.classList.add('match');
-             matchedCards.push(currentCard, previousCard);
-
-             openedCards = [];
-             isOver();
-         } else {
-          
-            setTimeout(() => {
-                currentCard.classList.remove('open', 'show');
-                previousCard.classList.remove('open', 'show');
-                openedCards = [];
-            }, 1000); 
-         }
+         compareCards(currentCard, previousCard);
+         
      } else {
-         card.classList.add('open', 'show');
+         card.classList.add('open', 'show', 'disabled');
          openedCards.push(this);
      }
     });
 }
 
+//compare the two cards
+function compareCards(currentCard, previousCard) {
+    if (currentCard.innerHTML === previousCard.innerHTML) {
+        currentCard.classList.add('match');
+        previousCard.classList.add('match');
+        matchedCards.push(currentCard, previousCard);
+
+        openedCards = [];
+        isOver();
+    } else {
+
+        setTimeout(() => {
+            currentCard.classList.remove('open', 'show', 'disabled');
+            previousCard.classList.remove('open', 'show', 'disabled');
+            openedCards = [];
+        }, 1000);
+    }
+    countMoves();
+}
+
+//check if the game is finished
 function isOver() {
     if(matchedCards.length === symbols.length) {
         alert('game over');
+        }
     }
 }
+//restart the game
+const restartGame = document.querySelector('.restart');
 
+restartGame.addEventListener('click', function() {
+//delete all cards  
+cardContainer.innerHTML = '';
+//call initGame to create new cards
+initGame();
+//reset all related variables
+matchedCards = [];
+})
+//start the game for the first time
+initGame();
+
+//moves
+let moves = 0;
+function countMoves() {
+moves++;
+    
+}
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
