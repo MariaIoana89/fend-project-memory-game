@@ -24,7 +24,12 @@
                 <li><i class="fa fa-star"></i></li>
             </ul>
 
-            <span class="moves">3</span> Moves
+            <span class="moves"></span> Moves
+            <div class="time">
+                <span class="minutes"> 0</span>min :
+                <span class="seconds">0 </span>sec
+            </div>
+
 
             <div class="restart">
                 <i class="fa fa-repeat"></i>
@@ -32,7 +37,16 @@
         </section>
 
         <ul class="deck"></ul>
-
+        <div id="modal" class="modal_container">
+            <h2>Congratulations! You won!</h2>
+            <p> Time: <span class="modal_timer"> </span>
+            </p>
+            <p> Moves: <span class="modal_moves"> </span>
+            </p>
+            <p>Stars: <span class="modal_stars"> </span>
+            </p>
+            <button id="playAgain" class="button_modal"> Play Again </button>
+        </div>
     </div>
 
     <script src="js/app.js"></script>

@@ -114,3 +114,42 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
+
+/* modal*/
+
+.modal_container {
+    display: none;
+    background-color: lightcyan;
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+    text-transform: uppercase;
+    color: lightsalmon;
+    padding: 10px;
+    border-radius: 15px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#modal .modal_stars {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.modal_stars li {
+    display: inline-block;
+}
+
+.button_modal {
+    border: none;
+    background-color: grey;
+    padding: 10px;
+    border-radius: 15px;
+    color: violet;
+    text-transform: uppercase;
+    cursor: pointer;
+}
