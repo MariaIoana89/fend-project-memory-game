@@ -1,28 +1,37 @@
 //Create a list that holds all of your cards
 
-const symbols = [
-    "fa fa-diamond",
+const icons = [
     "fa fa-diamond",
     "fa fa-paper-plane-o",
-    "fa fa-paper-plane-o",
-    "fa fa-anchor",
     "fa fa-anchor",
     "fa fa-bolt",
-    "fa fa-bolt",
-    "fa fa-cube",
     "fa fa-cube",
     "fa fa-leaf",
-    "fa fa-leaf",
-    "fa fa-bicycle",
     "fa fa-bicycle",
     "fa fa-bomb",
-    "fa fa-bomb"
 ];
-
+const symbols = icons.concat(icons);
 const cardContainer = document.querySelector(".deck");
 let openedCards = [];
 let matchedCards = [];
 let firstClick = true;
+const stars = document.querySelectorAll(".stars li i");
+//moves
+const movesContainer = document.querySelector(".moves");
+let moves = 0;
+movesContainer.innerHTML = 0;
+//timer
+let minutes = document.querySelector(".minutes");
+let seconds = document.querySelector(".seconds");
+let timer;
+minutes.innerText = 0;
+seconds.innerText = 0;
+const time = document.querySelector(".time");
+
+const restartGame = document.querySelector(".restart");
+const modal = document.querySelector("#modal");
+const playAgain = document.querySelector("#playAgain");
+
 //create the cards
 function initGame() {
     shuffle(symbols);
@@ -57,7 +66,6 @@ function initGame() {
         });
     }
 
-
     //compare the two cards
     function compareCards(currentCard, previousCard) {
         if (currentCard.innerHTML === previousCard.innerHTML) {
@@ -88,8 +96,8 @@ function initGame() {
 }
 
 //ratingmovesContainer
-const stars = document.querySelectorAll(".stars li i");
-function rating() {
+
+function removeStars() {
     switch (moves) {
         case 8:
             stars[0].classList.remove('fa-star');
@@ -106,8 +114,6 @@ function addStars() {
     });
 }
 
-const restartGame = document.querySelector(".restart");
-
 restartGame.addEventListener("click", function () {
     //start the game for the first time
     initGame();
@@ -123,6 +129,7 @@ function reset() {
     //call initGame to create new cards
     initGame();
     //reset all related variables
+    openedCards = [];
     matchedCards = [];
     moves = 0;
     movesContainer.innerHTML = moves;
@@ -132,25 +139,12 @@ function reset() {
     seconds.innerText = 0;
     addStars();
 }
-//moves
-const movesContainer = document.querySelector(".moves");
-let moves = 0;
-movesContainer.innerHTML = 0;
 
 function countMoves() {
     moves++;
     movesContainer.innerHTML = moves;
-    rating();
+    removeStars();
 }
-
-//timer
-
-let minutes = document.querySelector(".minutes");
-let seconds = document.querySelector(".seconds");
-let timer;
-minutes.innerText = 0;
-seconds.innerText = 0;
-const time = document.querySelector(".time");
 
 function startTimer() {
     timer = setInterval(function () {
@@ -183,9 +177,6 @@ function shuffle(array) {
 }
 
 /* modal*/
-
-const modal = document.querySelector("#modal");
-const playAgain = document.querySelector("#playAgain");
 
 function showModal() {
     modal.style.display = "block";

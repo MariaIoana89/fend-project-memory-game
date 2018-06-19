@@ -1,20 +1,20 @@
 # Memory Game Project
 
-## Table of Contents
-
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+This is a game built with HTML, CSS and Javascript.
+In order to play it, you only need to download the game.
+You don't need any internet connection, you can play it offline.
+Please use the download button on the link of github.com or just visit it online to see the code.
 
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+This is a memory or matching game.
+When you first click on a card, the card flips and show you what's behind and then flips.
+You cannot open more than 2 cards at a time.
+If the cards match (have the same symbol on them), then they turn into a different color and don't flip back.
+If the cards don't match, the cards flip back.
+The game is finish when all the cards are matched.
+In the end it will appear a pop-up message including your time spent on finishing the game, the rating (stars will drop after several moves) and number of moves the cards have flipped.
 
-To get started, open `js/app.js` and start building out the app's functionality
+## About
+This project is built for Udacity course "Front End Net Developer".
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
